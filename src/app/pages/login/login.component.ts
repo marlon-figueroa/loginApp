@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = new UsuarioModel();
+    if(localStorage.getItem('email')) {
+      this.usuario.email = localStorage.getItem('email');
+      this.recordarme=true;
+    }
   }
 
   login(form: NgForm) {
@@ -38,6 +42,11 @@ export class LoginComponent implements OnInit {
       (response) => {
         console.log(response);
         Swal.close();
+
+        if(this.recordarme){
+          localStorage.setItem('email', this.usuario.email);
+        }
+
         this.route.navigateByUrl("/home");
       },
       (error) => {
