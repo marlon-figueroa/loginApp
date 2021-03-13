@@ -15,7 +15,10 @@ export class AuthService {
     this.readToken();
   }
 
-  loguot() {}
+  //Cerrar sesion
+  loguot() {
+    localStorage.removeItem('token');
+  }
 
   //Autenticar usuario
   //https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]

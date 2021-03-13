@@ -14,6 +14,7 @@ import { AuthService } from "./../../services/auth.service";
 export class LoginComponent implements OnInit {
   usuario: UsuarioModel;
   recordarme = false;
+  appname='Tienda Demo';
 
   constructor(private auth: AuthService, private route: Router) {}
 
