@@ -40,6 +40,7 @@ export class RegistroComponent implements OnInit {
         if(this.recordarme){
           localStorage.setItem('email', this.usuario.email);
         }
+        localStorage.setItem('inLoggIn', this.usuario.email);
         Swal.close();
         this.route.navigateByUrl("/home");
       },

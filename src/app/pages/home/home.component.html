@@ -1,14 +1,50 @@
-<div class="container-fluid">
-  <div class="m-5">
-    <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand">{{appname}}</a>
+<nav class="navbar navbar-expand-lg navbar-inverse bg-inverse bg-faded linea-recta-encabezado">
+    <div class="container-fluid">
+      <a class="navbar-brand">{{ appname }}</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarText"
+        aria-controls="navbarText"
+        aria-expanded="true"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLink]="['/persona']">Personal</a>
+          </li>
+        </ul>
         <form class="d-flex">
-          <button (click)="salir()" class="btn btn-outline-danger">
-            Salir
-          </button>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"><strong><span style="color: #00508a;">Perfil</span> - {{ inLoggIn }} </strong></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="javascript:void(0)">Action</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0)">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item"
+                    href="javascript:void(0)"
+                    (click)="salir()">Salir</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </form>
       </div>
-    </nav>
+    </div>
+  </nav>
+
+  <div class="starter-template text-center py-5 px-3">
+    <h1>Bienvenid@ {{ inLoggIn }}</h1>
+    <p class="lead">Nuevo proyecto para llevar acabo la administracion de productos en punto de penta.<br> El objetivo generar es gestionar una tienda de forma generica por configurar.</p>
   </div>
-</div>

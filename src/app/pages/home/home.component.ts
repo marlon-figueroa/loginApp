@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   appname='Tienda Demo';
+  inLoggIn='';
 
   constructor(private auth:AuthService, private route:Router) { }
 
   ngOnInit() {
-
+    if(localStorage.getItem('inLoggIn')){
+      this.inLoggIn = localStorage.getItem('inLoggIn');
+    }
   }
 
   salir() {
