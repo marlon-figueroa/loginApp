@@ -1,3 +1,4 @@
+import { CONSTANTS } from './../models/constants';
 import { UsuarioModel } from "./../models/usuario.model";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -7,8 +8,9 @@ import { map } from "rxjs/operators";
   providedIn: "root",
 })
 export class AuthService {
-  private url = "https://identitytoolkit.googleapis.com/v1";
-  private apikey = "AIzaSyA6ehwhKFrhe4aGGLGGLf4Rgl8GZG3Q3eU";
+
+  private url = CONSTANTS.getUrlBase;
+  private apikey = CONSTANTS.getApiKey;
   userToken: string;
 
   constructor(private http: HttpClient) {
@@ -17,7 +19,7 @@ export class AuthService {
 
   //Cerrar sesion
   loguot() {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
   }
 
   //Autenticar usuario
@@ -63,7 +65,7 @@ export class AuthService {
     localStorage.setItem("token", idToken);
     let hoy = new Date();
     hoy.setSeconds(3600);
-    localStorage.setItem('expiry', hoy.getTime().toString());
+    localStorage.setItem("expiry", hoy.getTime().toString());
   }
 
   readToken() {
@@ -76,15 +78,15 @@ export class AuthService {
   }
 
   estaAutenticado(): boolean {
-    if(this.userToken.length < 2) {
+    if (this.userToken.length < 2) {
       return false;
     }
 
-    const expiry = Number(localStorage.getItem('expiry'));
+    const expiry = Number(localStorage.getItem("expiry"));
     let expiryDate = new Date();
     expiryDate.setTime(expiry);
 
-    if(expiryDate > (new Date())) {
+    if (expiryDate > new Date()) {
       return true;
     } else {
       return false;

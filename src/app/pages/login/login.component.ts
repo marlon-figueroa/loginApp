@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { AppComponent } from "./../../app.component";
+import { Component, Input, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
@@ -14,15 +15,19 @@ import { AuthService } from "./../../services/auth.service";
 export class LoginComponent implements OnInit {
   usuario: UsuarioModel;
   recordarme = false;
-  appname='Tienda Demo';
+  appname = "Tienda Demo";
 
-  constructor(private auth: AuthService, private route: Router) {}
+  constructor(
+    private auth: AuthService,
+    private route: Router,
+    private appComponent: AppComponent
+  ) {}
 
   ngOnInit() {
     this.usuario = new UsuarioModel();
-    if(localStorage.getItem('email')) {
-      this.usuario.email = localStorage.getItem('email');
-      this.recordarme=true;
+    if (localStorage.getItem("email")) {
+      this.usuario.email = localStorage.getItem("email");
+      this.recordarme = true;
     }
   }
 
@@ -44,11 +49,13 @@ export class LoginComponent implements OnInit {
         console.log(response);
         Swal.close();
 
-        if(this.recordarme){
-          localStorage.setItem('email', this.usuario.email);
+        if (this.recordarme) {
+          localStorage.setItem("email", this.usuario.email);
         }
-        localStorage.setItem('inLoggIn', this.usuario.email);
-        this.route.navigateByUrl("/home");
+        localStorage.setItem("inLoggIn", this.usuario.email);
+        localStorage.setItem("session", "true");
+        this.appComponent.setBeSessionActive(false);
+        this.route.navigateByUrl("/main");
       },
       (error) => {
         console.log(error.error.error.message);

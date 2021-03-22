@@ -1,0 +1,83 @@
+<h1>Detalle de persona</h1>
+<hr />
+
+<div class="row text-right">
+  <div class="col">
+    <button class="btn btn-outline-dark" routerLink="/persona">
+      <i class="fa fa-arrow-left"></i>
+      Regresar
+    </button>
+  </div>
+</div>
+
+<div class="row animated fadeIn faster">
+  <div class="col">
+    <form (ngSubmit)="guardar(f)" #f="ngForm">
+      <div class="form-group">
+        <label>Firebase ID</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Firebase ID"
+          [(ngModel)]="persona.id"
+          name="id"
+          disabled="disabled"
+        />
+        <small class="form-text text-muted">Este campo es autogenerado</small>
+      </div>
+
+      <div class="form-group">
+        <label>Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Nombres"
+          [(ngModel)]="persona.nombres"
+          name="nombres"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Apellido paterno</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.apellidoPaterno"
+          name="apellidoPaterno"
+          placeholder="Apellido paterno"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Apellido materno</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.apellidoMaterno"
+          name="apellidoMaterno"
+          placeholder="Apellido materno"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Fecha de nacimiento</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="persona.fechaNacimiento"
+          name="fechaNacimiento"
+          placeholder="Fecha nacimiento"
+        />
+      </div>
+
+      <hr />
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-outline-primary w-25">
+          <i class="fa fa-save"></i>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

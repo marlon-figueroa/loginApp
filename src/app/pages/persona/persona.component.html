@@ -1,3 +1,67 @@
-<p>
-  persona works!
-</p>
+<h1>Listado de persona</h1>
+<hr />
+
+<div class="row">
+  <div class="col text-left">
+    <button routerLink="/detail-persona/nuevo" class="btn btn-outline-dark">
+      <i class="fa fa-plus"></i>
+      Nuevo
+    </button>
+  </div>
+</div>
+
+<table
+  *ngIf="!cargando && personas.length > 0"
+  class="table table-hover table-bordered border-dark mt-3 animated fadeIn faster animated fadeIn faster"
+>
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellido paterno</th>
+      <th scope="col">Apellido materno</th>
+      <th scope="col" class="text-right">Fecha de nacimiento</th>
+      <th scope="col" class="text-center">Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let persona of personas | paginate: config; let i = index;">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ persona.nombres }}</td>
+      <td>{{ persona.apellidoPaterno }}</td>
+      <td>{{ persona.apellidoMaterno }}</td>
+      <td class="text-right">{{ persona.fechaNacimiento }}</td>
+      <td class="text-center">
+        <button class="btn btn-outline-info me-1" [routerLink]="['/detail-persona', persona.id]">
+          <i class="fa fa-pencil"></i>
+        </button>
+
+        <button class="btn btn-outline-danger" (click)="borrarPersona(persona, i)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+<div
+  *ngIf="!cargando && personas.length === 0"
+  class="alert alert-warning text-center mt-3 animated fadeIn faster"
+>
+  <h4 class="alert-heading">No hay registros</h4>
+  <p>
+    <i class="fa fa-exclamation fa-2x"></i>
+  </p>
+</div>
+
+<div
+  *ngIf="cargando"
+  class="alert alert-light text-center mt-3 animated fadeIn faster"
+>
+  <h4 class="alert-heading">Cargando</h4>
+  <div class="spinner-border text-dark" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
